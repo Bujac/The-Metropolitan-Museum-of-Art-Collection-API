@@ -14,11 +14,4 @@ data class ElemDetails(
     val title: String = "",
     val culture: String = "",
     val period: String = "",
-    val artistDisplayName: String = "",
-    val artistDisplayBio: String = "",
-    val objectDate: String = "",
-    val medium: String = "",
-    val dimensions: String = "",
-    val creditLine: String = "",
-    val repository: String = ""
 )

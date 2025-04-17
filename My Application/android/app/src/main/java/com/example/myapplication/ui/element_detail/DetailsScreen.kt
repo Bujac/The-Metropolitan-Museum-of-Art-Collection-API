@@ -1,8 +1,6 @@
 package com.example.myapplication.ui.element_detail
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -28,7 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 fun DetailsScreen(
     onUpClick: () -> Unit,
     viewModel: DetailsViewModel = koinViewModel()
-) {
+    ) {
     val details by viewModel.details.collectAsStateWithLifecycle()
 
     DetailsScreen(
@@ -44,7 +42,7 @@ private fun DetailsScreen(
     onUpClick: () -> Unit
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),//sa fie pe tot ecranul
         topBar = {
             CenterAlignedTopAppBar(
                 navigationIcon = {
@@ -76,38 +74,6 @@ private fun DetailsScreen(
                     contentScale = ContentScale.Fit
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-            }
-            if (details.additionalImages.size < 3) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    details.additionalImages.forEach { imageUrl ->
-                        AsyncImage(
-                            model = imageUrl,
-                            contentDescription = "Additional Image",
-                            modifier = Modifier
-                                .size(150.dp)
-                                .padding(horizontal = 4.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                }
-            } else {
-                LazyRow(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    items(details.additionalImages) { imageUrl ->
-                        AsyncImage(
-                            model = imageUrl,
-                            contentDescription = "Additional Image",
-                            modifier = Modifier
-                                .size(150.dp)
-                                .padding(end = 8.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                    }
-                }
             }
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState())
